@@ -1,0 +1,291 @@
+:root {
+    --ink: #17211b;
+    --muted: #6d786f;
+    --line: #dce4dc;
+    --paper: #f7f9f6;
+    --panel: #ffffff;
+    --green: #2f7653;
+    --green-dark: #20583c;
+    --mint: #e8f2eb;
+    --gold: #d69a32;
+    --shadow: 0 16px 40px rgba(27, 55, 39, .09);
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.noscript-message {
+    padding: 14px 20px;
+    color: #7d332c;
+    background: #fae9e5;
+    text-align: center;
+    font-size: 13px;
+}
+button { font: inherit; }
+.topbar {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(20px, 5vw, 72px);
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+.brand { color: var(--ink); text-decoration: none; font-weight: 750; letter-spacing: -.03em; font-size: 19px; display: flex; align-items: center; gap: 9px; }
+.brand-mark { color: var(--green); font-size: 27px; line-height: 1; }
+.game-meta { display: flex; align-items:center; gap: 16px; color: var(--muted); font-size: 13px; font-weight: 650; }
+.game-meta strong { color: var(--green-dark); }
+.meta-divider { width: 1px; height: 18px; background: var(--line); }
+main { max-width: 1440px; margin: 0 auto; padding: 32px clamp(20px, 5vw, 72px) 48px; }
+.page-meta {
+    justify-content: flex-end;
+    margin-bottom: 24px;
+    color: var(--muted);
+}
+.page-meta strong { color: var(--green-dark); }
+.status-banner { min-height: 24px; margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+.status-banner.error { color: #a34135; }
+.status-banner.success { color: var(--green-dark); }
+.play-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr); gap: 20px; align-items: stretch; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+.panel-heading { display: flex; justify-content: space-between; align-items: fkex-start; padding: 24px 24px 18px; gap: 12px; }
+.compact-heading { padding-bottom: 16px; }
+.eyebrow { margin: 0 0 6px; color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-weight: 750; font-size: 10px; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 0; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.04em; line-height: 1.1; }
+h2 { margin: 0; font-size: 18px; letter-spacing: -.025em; }
+.street-view { height: min(58vh, 570px); min-height:350px; background: #e7ece8; position: relative; }
+.street-view::after { content: ""; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(0,o,0,.03); }
+.scene-help { color: var(--muted); font-size: 12px; padding: 13px 24px 16px; }
+.guess-map { height: min(58vh, 570px); min-height: 350px; background: #e9eee9; }
+.map-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px 16px 24px; }
+.map-footer p { margin: 0; color: var(--muted); font-size: 12px; }
+.primary-button { border: 0; border-radius:8px; background: var(--green); color: #fff; padding: 12px 18px; font-weight: 750; cursor: pointer; transition: background .15 ease, transform .15 ease; }
+.primary-button:hover:not(:disabled) { background: var(--green-dark); transform: translateY(-1px); }
+.primary-button:disabled { opacity: .42; cursor: not-allowed; }
+.text-button { color: var(--green); background: transparent; border: 0; padding: 2px 0; font-weight: 700; font-size: 12px; cursor: pointer; }
+.text-button:hover { color: var(--green-dark); text-decoration: underline; }
+.leaflet-container { font-family: inherit; }
+.guess-pin, .actual-pin { border-radius: 50% 50% 50% 0; width: 21px !important; height: 21px !important; transform: rotate(-45deg); box-shadow: 0 2px 5px rgba(0,0,0,.3); border: 3px solid #fff; }
+.guess-pin { background: var(--green); }
+.actual-pin { background: #c45043; }
+.result-card { margin-top: 20px; padding: 22px 24px; background: #fff; border: 1px solid var(--line); border-radius: 14px; display: grid; grid-template-columns: 1.2fr 2fr auto; align-items: center; gap: 28px; box-shadow: var(--shadow); }
+.result-card h2 { font-size: 20px; margin-bottom: 5px; }
+.result-card p:not(.eyebrow) { color: var(--muted); font-size: 13px; margin: 0; }
+.result-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 0; }
+.result-stats div { border-left: 1px solid var(--line); padding-left: 14px; min-width: 0; }
+.result-stats dt { color: var(--muted); font-size: 10px; margin-bottom: 5px; }
+.result-stats dd { margin: 0; font-size: 13px; font-weight: 750; overflow-wrap: anywhere; }
+.final-screen { max-width: 650px; margin: 9vh auto 0; text-align: center; padding: 55px 25px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.final-icon { color: var(--green); font-size: 54px; line-height: 1; margin-bottom: 20px; }
+.final-screen h1 { font-size: clamp(30px, 6vw, 48px); margin-bottom: 25px; }
+.final-score { color: var(--green-dark); margin-bottom: 15px; }
+.final-screen strong { font-size: 70px; letter-spacing: -.07em; }
+.final-score span { color: var(--muted); font-size: 18px; }
+.final-screen #final-message { color: var(--muted); margin-bottom: 28px; }
+.footer { text-align: center; color: #87918a; font-size: 11px; padding: 0 20px 25px; }
+.scene-loading,
+.scene-erroe {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px;
+    text-align: center;
+    color: var(--muted);
+    background: #edf2ee;
+    font-size: 13px;
+}
+.scene-error strong { 
+    color: var(--ink);
+    font-size: 16px;
+}
+.scene-error span {
+    max-width: 360px;
+    line-height: 1.5;
+}
+.scene-error .text-button {
+    margin-top: 5px;
+}
+.leaflet-control-zoom {
+    border: 0 !important;
+    box-shadow: 0 2px 8px rgba(27, 55, 39, .16) !important;
+}
+.leaflet-control-zoom a {
+    color: var(--green-dark) !important;
+    border: 0 !important;
+}
+.leaflet-control-attribution {
+    font-size: 9px;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    box-shadow: 0 3px 14px rgba(27, 55, 39, .15);
+}
+.leaflet-popup-content {
+    margin: 10px 12px;
+    font-size: 12px;
+    font-weight: 650;
+}
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(47, 118, 83, .35);
+    outline-offset: 3px;
+}
+.panel-heading h1,
+.panel-heading h2 {
+    color: var(--ink);
+}
+.game-screen {
+    animation: appear .25s ease-out;
+}
+@keyframes appear {
+    from { opacity: .7; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.result-card .primary-button {
+    white-space: nowrap;
+}
+.result-stats dd,
+.final-score strong {
+    font-variant-numeric: tabular-nums;
+}
+.status-banner:empty {
+    display: none;
+}
+.status-banner {
+    transition: color .15s ease;
+}
+.guess-panel,
+.scene-pane {
+    min-width: 0;
+}
+.street-view img {
+    max-width: 100%;
+}
+.final-screen .primary-button {
+    min-width: 150px;
+}
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+@media (max-width: 900px) {
+    .status-banner {
+        margin-bottom: 10px;
+    }
+    .panel {
+        border-radius: 12px;
+    }
+    .result-card {
+        align-items: start;
+    }
+    .result-stats div {
+        min-height: 38px;
+    }
+}
+@media (max-width: 540px) {
+    .eyebrow {
+        font-size: 9px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 17px;
+    }
+    .final-screen {
+        margin-top: 4vh;
+        padding: 40px 18px;
+    }
+    .final-score strong {
+        font-size: 58px;
+    }
+    .footer {
+        line-height: 1.5;
+    }
+}
+[hidden] { display: none !important; }
+
+
+:root {
+    --ink: #202b2b;
+    --muted: #73756d;
+    --line: #ded8cb;
+    --paper: #f3efe7;
+    --panel: #fffdf8;
+    --green: #2f716d;
+    --green-dark: #215650;
+    --mint: #e8efea;
+    --gold: #d9873d;
+    --shadow: 5px 7px 0 rgba(68, 61, 46, 0.6);
+}
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--paper);
+}
+main { padding-top: 26px; }
+.page-meta { font-size: 13px; }
+.status-banner { color: #777267; }
+.panel {
+    border-color: #d7d0c3;
+    border-radius: 10px 13px 11px 15px;
+    box-shadow: var(--shadow);
+}
+.scene-panel { transform: rotate(-.12deg); }
+.guess-panel { transform: rotate(.12deg); }
+.panel-heading { padding-top: 22px; }
+.eyebrow { color: var(--green); letter-spacing: .08em; }
+h1, h2 { letter-spacing: -.025em; }
+.street-view, .guess-map { background: #e8e4da; }
+.scene-help, .map-footer { color: #777267; }
+.primary-button {
+    background: #d86645;
+    border-radius: 6px 8px 7px 5px;
+    box-shadow: 2px 3px 0 rgba(129, 55, 37, .16);
+}
+.primary-button:hover:not(:disabled) { background: #bd4f32; }
+.text-button { color: var(--green); }
+.result-card { border-radius: 9px 13px 10px 12px; box-shadow: var(--shadow); }
+.final-screen { border-radius: 10px 15px 11px 13px; }
+.guess-pin { background: #d86645; }
+.actual-pin { background: #3d7771; }
+@media (max-width: 900px) {
+    .scene-panel, .guess-panel { transform: none; }
+}
+@media (max-width: 900px) {
+    main { padding-top: 22px; }
+    .play-grid { grid-template-columns: 1fr; }
+    .street-view, .guess-map { height: 58vw; min-height: 300px; max-height: 500px; }
+    .result-card { grid-template-columns: 1fr; gap: 18px; }
+    .result-stats { grid-template-columns: repeat(4, 1fr); }
+    .result-card .primary-button { justify-self: start; }
+}
+@media (max-width: 540px) {
+    .topbar { height: 62px; padding: 0 18px; }
+    .game-meta { gap: 9px; font-size: 11px; }
+    .brand { font-size: 17px; }
+    main { padding: 18px 12px 34px; }
+    .panel-heading { padding: 19px 17px 14px; }
+    .street-view, .guess-map { height: 67vw; min-height: 245px; }
+    .scene-help { padding: 11px 17px 14px; }
+    .map-footer { align-items: stretch; flex-direction: column; padding: 13px 17px 16px; }
+    .map-footer .primary-button { width: 100%; }
+    .result-card { padding: 19px 17px; }
+    .result-stats { grid-template-columns: repeat(2, 1fr); row-gap: 16px; }
+    .result-stats div:nth-child(3) { border-left: 0; padding-left: 0; }
+    .result-card .primary-button { width: 100% }
+}
