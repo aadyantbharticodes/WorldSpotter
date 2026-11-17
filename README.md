@@ -9,4 +9,4 @@ WorldSpotter use Mapillary API to load images.
 
 To run locally clone the github repo and add your API in config.js.
 
-Then launch the game via Live server in VS Code to run locally on your browser. 
+Then launch the game via Live server in VS Code to run locally on your browser.

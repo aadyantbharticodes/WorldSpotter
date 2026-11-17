@@ -1,86 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
-    <meta name="description" content="A simple GeoGuesser Game.">
-    <title>WorldSpotter</title>
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://{s}tile.openstreetmap.org">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A simple street-level geography guessing game.">
+  <title>Worldspotter</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://{s}.tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <noscript>
-        <div class="nonscript-message">
-            WorldSpotter requires JavaScript to be enabled in your browser. Please enable JavaScript and reload the page.
+  <noscript>
+    <div class="noscript-message">
+      Worldspotter needs JavaScript enabled to load the map and street imagery.
+    </div>
+  </noscript>
+  <main>
+    <section id="game-screen" class="game-screen" aria-live="polite">
+      <div class="game-meta page-meta" aria-label="Game progress">
+        <span id="round-label">Round 1 / 5</span>
+        <span class="meta-divider"></span>
+        <span><strong id="total-score">0</strong> pts</span>
+      </div>
+      <div id="status-banner" class="status-banner" role="status">Looking for somewhere…</div>
+      <div class="play-grid">
+        <section class="panel scene-panel" aria-labelledby="scene-title">
+          <div class="panel-heading">
+            <div>
+            <p class="eyebrow">A street somewhere</p>
+            <h1 id="scene-title">Okay... where is this?</h1>
+          </div>
         </div>
-    </noscript>
-    <main>
-        <section id="game-screen" class="game-screen" aria-live="polite">
-            <div class="game-meta page-meta" aria-label="Game Progress">
-                <span id="round-label">Round 1</span>
-                <span class="meta-divider"></span>
-                <span><strong id="total-score">0</strong> pts</span>
-            </div>
-            <div id="status-banner" class="status-banner" role="status">Looking for somewhere...</div>
-            <div class="play-grid">
-                <section class="panel scene-panel" aria-labelledby="scene-title">
-                    <div class="panel-heading">
-                        <div>
-                            <p class="eyebrow">A street somewhere</p>
-                            <h1 id="scene-title">Okay... where is this?</h1>
-                        </div>
-                    </div>
-                    <div id="street-view" class="street-view" aria-label="Street-level scene"></div>
-                    <div class="scene-help">Explore the scene, then place your best guess on the map.</div>
-                </section>
-
-                <section class="panel guess-panel" aria-labelledby="map-title">
-                    <div class="panel-heading compact-heading">
-                        <div>
-                            <p class="eyebrow">Your Guess</p>
-                            <h2 id="map-title">Put Your Pin Where You Think It Is</h2>
-                        </div>
-                    </div>
-                    <div id="guess-map" class="guess-map" aria-label="Interactive World Map"></div>
-                        <div class="map-footer">
-                            <p id="guess-hint">Click the Map. Trust Your Gut.</p>
-                            <button id="submit-guess" class="primary-button" type="button" disabled>Lock it in</button>
-                        </div>
-                </section>
-            </div>
-            <section id="result-card" class="result-card" hidden aria-live="polite">
-                <div>
-                    <p class="eyebrow">Round Result</p>
-                    <h2 id="result-title">Nice Guess</h2>
-                    <p id="result-summary"></p>
-                </div>
-                <dl class="result-stats">
-                    <div><dt>Your Location</dt><dd id="result-guess">-</dd></div>
-                    <div><dt>Actual Location</dt><dd id="result-actual">-</dd></div>
-                    <div><dt>Distance</dt><dd id="result-distance">-</dd></div>
-                    <div><dt>Round Score</dt><dd id="result-points">0</dd></div>
-                </dl>
-                <button id="next-round" class="primary-button" type="button">Next Round</button>
-            </section>
+          <div id="street-view" class="street-view" aria-label="Street-level scene"></div>
+          <div class="scene-help">Explore the scene, then place your best guess on the map.</div>
         </section>
 
-        <section id="final-screen" class="final-screen" hidden aria-labelledby="final-title">
-            <div class="final-icon"></div>
-            <p class="eyebrow">Journey Complete</p>
-            <h1 id="final-title">Your world tour score</h1>
-            <div class="final-score"><strong id="final-score">0</strong><span> / 25,000</span></div>
-            <p id="final-message">Every guess is a new way to see the world.</p>
-            <button id="play-again" class="primary-button" type="button">Play Again</button>
+        <section class="panel guess-panel" aria-labelledby="map-title">
+          <div class="panel-heading compact-heading">
+            <div>
+              <p class="eyebrow">Your guess</p>
+              <h2 id="map-title">Put your pin where you think it is</h2>
+            </div>
+          </div>
+          <div id="guess-map" class="guess-map" aria-label="Interactive world map"></div>
+          <div class="map-footer">
+            <p id="guess-hint">Click the map. Trust your gut.</p>
+            <button id="submit-guess" class="primary-button" type="button" disabled>Lock it in</button>
+          </div>
         </section>
-    </main>
+      </div>
+      <section id="result-card" class="result-card" hidden aria-live="polite">
+        <div>
+          <p class="eyebrow">Round result</p>
+          <h2 id="result-title">Nice guess.</h2>
+          <p id="result-summary"></p>
+        </div>
+        <dl class="result-stats">
+          <div><dt>Your location</dt><dd id="result-guess">—</dd></div>
+          <div><dt>Actual location</dt><dd id="result-actual">—</dd></div>
+          <div><dt>Distance</dt><dd id="result-distance">—</dd></div>
+          <div><dt>Round score</dt><dd id="result-score">0</dd></div>
+        </dl>
+        <button id="next-round" class="primary-button" type="button">Next round</button>
+      </section>
+    </section>
 
-    <script src="config.js"></script>
-    <script scr="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js"></script>
-    <script src="ap.js"></script>
+    <section id="final-screen" class="final-screen" hidden aria-labelledby="final-title">
+      <div class="final-icon">◎</div>
+      <p class="eyebrow">Journey complete</p>
+      <h1 id="final-title">Your world tour score</h1>
+      <div class="final-score"><strong id="final-score">0</strong><span> / 25,000</span></div>
+      <p id="final-message">Every guess is a new way to see the world.</p>
+      <button id="play-again" class="primary-button" type="button">Play again</button>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
